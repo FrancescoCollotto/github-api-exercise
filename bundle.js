@@ -28,9 +28,31 @@
           this.button.addEventListener("click", () => {
             const repoName = document.querySelector("#repo-name").value;
             this.api.getRepoInfo(repoName, (data) => {
-              console.log(data);
+              this.createHTMLEl(data);
             });
           });
+        }
+        createHTMLEl(data) {
+          const mainContainer = document.querySelector("#main-container");
+          let newH2 = document.createElement("h2");
+          newH2.innerText = data.name;
+          mainContainer.append(newH2);
+          let profilPic = document.createElement("img");
+          profilPic.src = data.owner.avatar_url;
+          mainContainer.append(profilPic);
+          let stargazers = document.createElement("p");
+          stargazers.innerText = data.stargazers_count;
+          mainContainer.append(stargazers);
+          let forks = document.createElement("p");
+          forks.innerText = data.forks_count;
+          mainContainer.append(forks);
+          let language = document.createElement("p");
+          language.innerText = data.language;
+          mainContainer.append(language);
+          let htmlUrl = document.createElement("a");
+          htmlUrl.href = data.html_url;
+          htmlUrl.innerText = "more info";
+          mainContainer.append(htmlUrl);
         }
       };
       module.exports = GithubView2;
