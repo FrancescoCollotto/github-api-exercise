@@ -4,6 +4,7 @@ class GithubView {
     this.button = document.querySelector("#btn");
     this.button.addEventListener("click", () => {
       const repoName = document.querySelector("#repo-name").value;
+      this.clearElements()
       this.api.getRepoInfo(repoName, (data) => {
         this.createHTMLEl(data);
       });
@@ -46,6 +47,11 @@ class GithubView {
     htmlUrl.href = data.html_url;
     htmlUrl.innerText = "more info";
     mainContainer.append(htmlUrl);
+  }
+
+  clearElements() {
+    const mainContainer = document.querySelector("#main-container");
+    mainContainer.innerHTML = "";
   }
 }
 
