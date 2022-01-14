@@ -18,10 +18,28 @@
     }
   });
 
+  // githubView.js
+  var require_githubView = __commonJS({
+    "githubView.js"(exports, module) {
+      var GithubView2 = class {
+        constructor(api2) {
+          this.api = api2;
+          this.button = document.querySelector("#btn");
+          this.button.addEventListener("click", () => {
+            const repoName = document.querySelector("#repo-name").value;
+            this.api.getRepoInfo(repoName, (data) => {
+              console.log(data);
+            });
+          });
+        }
+      };
+      module.exports = GithubView2;
+    }
+  });
+
   // index.js
   var GithubApi = require_githubApi();
+  var GithubView = require_githubView();
   var api = new GithubApi();
-  api.getRepoInfo("sinatra/sinatra", (data) => {
-    console.log(data.forks_count);
-  });
+  var view = new GithubView(api);
 })();

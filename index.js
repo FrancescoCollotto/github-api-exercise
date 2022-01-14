@@ -6,8 +6,11 @@
 // github link: html_url
 
 const GithubApi = require('./githubApi')
+const GithubView = require('./githubView')
 const api = new GithubApi()
+const view = new GithubView(api)
 
-api.getRepoInfo("sinatra/sinatra", (data) => {
-  console.log(data.forks_count)
-})
+
+// api.getRepoInfo("sinatra/sinatra", (data) => {
+//   console.log(data.forks_count)
+// })
